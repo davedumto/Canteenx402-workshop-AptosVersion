@@ -1,0 +1,39 @@
+{
+  "name": "create-x402-app",
+  "version": "1.0.0",
+  "description": "CLI tool to scaffold x402 payment-gated Next.js applications on Aptos",
+  "main": "bin/index.js",
+  "type": "module",
+  "bin": {
+    "create-x402-app": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "node bin/index.js test-app"
+  },
+  "keywords": [
+    "x402",
+    "aptos",
+    "payment",
+    "api",
+    "blockchain",
+    "nextjs",
+    "cli",
+    "scaffold"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^12.0.0",
+    "degit": "^2.8.4",
+    "chalk": "^5.3.0",
+    "ora": "^8.0.1",
+    "@aptos-labs/ts-sdk": "^5.2.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davedumto/nex402"
+  }
+}

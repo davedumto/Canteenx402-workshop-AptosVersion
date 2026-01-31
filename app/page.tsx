@@ -100,100 +100,95 @@ export default function Home() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-zinc-900 via-zinc-900 to-teal-950/20 text-zinc-100 p-8">
-      {/* Floating particles effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-teal-500/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-emerald-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-green-400 p-8 font-mono">
+      {/* Scanline effect */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+        <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,#0f0_3px,transparent_4px)]" />
       </div>
 
-      <main className="relative flex flex-col gap-6 items-center max-w-lg w-full">
+      <main className="relative flex flex-col gap-6 items-center max-w-2xl w-full">
         {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-teal-200 via-emerald-400 to-teal-200 bg-clip-text text-transparent drop-shadow-lg">
-            🥠 Fortune Cookie
+        <div className="text-center space-y-2 border border-green-500/30 p-4 bg-green-950/20">
+          <h1 className="text-3xl font-bold text-green-400">
+            &gt; x402 Next.js Starter
           </h1>
-          <p className="text-teal-400/80 text-sm tracking-wide">
-            Powered by aptos-x402 V2
+          <p className="text-green-500/60 text-xs tracking-wider">
+            // Pay-per-request API template using Aptos blockchain
           </p>
         </div>
 
-        {/* Main Card */}
-        <div className="w-full bg-zinc-800/60 backdrop-blur-md border border-teal-500/20 rounded-2xl p-8 shadow-2xl shadow-teal-900/10">
+        {/* Main Terminal */}
+        <div className="w-full border-2 border-green-500/40 bg-black p-6 shadow-lg shadow-green-500/10">
           {!walletAddress ? (
-            <div className="text-center space-y-6">
-              <div className="text-6xl animate-bounce">🔮</div>
-              <p className="text-zinc-300 text-lg">
+            <div className="space-y-4">
+              <div className="text-green-400 animate-pulse">$ initializing wallet...</div>
+              <p className="text-green-300/70 text-sm font-mono">
                 {APTOS_PRIVATE_KEY
-                  ? "Connecting to Aptos realm..."
-                  : "Set NEXT_PUBLIC_APTOS_PRIVATE_KEY in .env.local"}
+                  ? "/* Connecting to Aptos network */"
+                  : "ERROR: Set NEXT_PUBLIC_APTOS_PRIVATE_KEY in .env.local"}
               </p>
-              {error && <p className="text-red-400 text-sm">{error}</p>}
+              {error && <p className="text-red-500 text-sm font-mono border-l-2 border-red-500 pl-2">{error}</p>}
             </div>
           ) : (
             <div className="space-y-6">
               {/* Wallet Status */}
-              <div className="flex justify-between items-center bg-zinc-900/50 rounded-xl px-4 py-3">
-                <div className="flex items-center gap-3">
-                  <div className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50" />
-                  <span className="text-zinc-300 font-medium">
-                    {walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Aptos Wallet'}
+              <div className="flex justify-between items-center border border-green-500/30 bg-green-950/10 px-4 py-3 font-mono text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="text-green-500">$</span>
+                  <span className="text-green-400/80">
+                    {walletAddress ? `${walletAddress.slice(0, 8)}...${walletAddress.slice(-6)}` : 'wallet'}
                   </span>
                 </div>
-                <span className="text-green-400 font-semibold text-sm uppercase tracking-wider">
-                  Connected
+                <span className="text-green-400 text-xs">
+                  [ONLINE]
                 </span>
               </div>
 
-              {/* Fortune Display */}
-              <div className="min-h-[180px] flex items-center justify-center bg-gradient-to-br from-zinc-900/80 to-zinc-800/50 rounded-xl p-8 border border-teal-500/10 relative overflow-hidden">
-                {/* Decorative corners */}
-                <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-teal-500/30 rounded-tl-lg" />
-                <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-teal-500/30 rounded-tr-lg" />
-                <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-teal-500/30 rounded-bl-lg" />
-                <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-teal-500/30 rounded-br-lg" />
-
-                {loading ? (
-                  <div className="flex flex-col items-center gap-4">
-                    <div className="text-5xl animate-spin">🥠</div>
-                    <p className="text-teal-400 animate-pulse text-lg">
-                      Processing on-chain payment...
-                    </p>
-                  </div>
-                ) : showReveal && !fortune ? (
-                  <div className="text-6xl animate-ping">✨</div>
-                ) : fortune ? (
-                  <div className="text-center space-y-3 animate-fade-in">
-                    <div className="text-4xl">🌟</div>
-                    <p className="text-xl font-serif italic text-teal-100 leading-relaxed">
-                      "{fortune}"
-                    </p>
-                  </div>
-                ) : (
-                  <div className="text-center space-y-3">
-                    <div className="text-5xl opacity-50">🥠</div>
-                    <p className="text-zinc-400 text-lg">
-                      Crack open a cookie to reveal your destiny
-                    </p>
-                  </div>
-                )}
+              {/* Response Display */}
+              <div className="min-h-[200px] flex items-start border-2 border-green-500/30 bg-black p-6 font-mono text-sm relative">
+                <div className="w-full">
+                  {loading ? (
+                    <div className="space-y-2">
+                      <p className="text-yellow-400">&gt; Initiating payment protocol...</p>
+                      <p className="text-green-400 animate-pulse">&gt; Broadcasting transaction to Aptos testnet</p>
+                      <p className="text-green-400/60">&gt; Awaiting confirmation<span className="animate-pulse">...</span></p>
+                    </div>
+                  ) : showReveal && !fortune ? (
+                    <p className="text-green-400 animate-pulse">&gt; Payment confirmed. Fetching data...</p>
+                  ) : fortune ? (
+                    <div className="space-y-3">
+                      <p className="text-green-500">&gt; Status: 200 OK</p>
+                      <p className="text-green-400/80">&gt; Response:</p>
+                      <div className="pl-4 border-l-2 border-green-500/50 text-green-300">
+                        <code className="whitespace-pre-wrap">
+                          {JSON.stringify({ fortune }, null, 2)}
+                        </code>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      <p className="text-green-500/60">&gt; Ready to execute payment-gated request</p>
+                      <p className="text-green-500/40">// Click below to send request to /api/fortune</p>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Transaction Info */}
               {txHash && (
-                <div className="bg-zinc-900/40 rounded-lg p-3 border border-teal-900/50 animate-fade-in">
+                <div className="border border-green-500/30 bg-green-950/10 p-3 font-mono text-xs">
                   <div className="flex flex-col gap-2">
-                    <span className="text-xs text-zinc-500 uppercase tracking-widest font-bold">Transaction Confirmed</span>
-                    <code className="text-[10px] text-teal-300 font-mono break-all bg-black/20 p-2 rounded">
+                    <span className="text-green-500">// Transaction Hash:</span>
+                    <code className="text-green-400/80 break-all bg-black/40 p-2 border-l-2 border-green-500/50">
                       {txHash}
                     </code>
                     <a
                       href={`https://explorer.aptoslabs.com/txn/${txHash}?network=testnet`}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-xs text-teal-400 hover:text-teal-200 underline mt-1"
+                      className="text-green-400 hover:text-green-300 underline"
                     >
-                      View on Aptos Explorer &rarr;
+                      &gt; View on Aptos Explorer
                     </a>
                   </div>
                 </div>
@@ -201,8 +196,8 @@ export default function Home() {
 
               {/* Error Message */}
               {error && (
-                <div className="bg-red-900/30 border border-red-500/30 rounded-xl px-4 py-3 text-center">
-                  <p className="text-red-400">{error}</p>
+                <div className="border-2 border-red-500/50 bg-red-950/20 px-4 py-3">
+                  <p className="text-red-400 font-mono text-sm">ERROR: {error}</p>
                 </div>
               )}
 
@@ -210,19 +205,19 @@ export default function Home() {
               <button
                 onClick={handleGetFortune}
                 disabled={loading || !fetchWithPayment}
-                className="w-full py-4 px-6 bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-400 hover:to-emerald-400 disabled:from-zinc-600 disabled:to-zinc-600 disabled:cursor-not-allowed rounded-xl font-bold text-lg text-zinc-900 transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-500/40 hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full py-4 px-6 border-2 border-green-500 bg-green-500/10 hover:bg-green-500/20 disabled:border-gray-600 disabled:bg-gray-900/50 disabled:cursor-not-allowed disabled:text-gray-600 font-mono font-bold text-base text-green-400 transition-all duration-200 hover:shadow-lg hover:shadow-green-500/20"
                 type="button"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
-                    <span className="animate-spin">🥠</span>
-                    Processing Payment...
+                    &gt; PROCESSING_PAYMENT
+                    <span className="animate-pulse">...</span>
                   </span>
                 ) : (
                   <span className="flex items-center justify-center gap-2">
-                    🥠 Open Fortune Cookie
-                    <span className="text-sm font-normal opacity-80">
-                      (0.01 USDC)
+                    &gt; EXECUTE_REQUEST
+                    <span className="text-sm font-normal opacity-70">
+                      [COST: 0.01 USDC]
                     </span>
                   </span>
                 )}
@@ -232,27 +227,11 @@ export default function Home() {
         </div>
 
         {/* Footer */}
-        <div className="text-center space-y-1 mt-4">
-          <p className="text-zinc-200 text-sm">Aptos Testnet • USDC</p>
+        <div className="text-center space-y-1 mt-4 font-mono text-xs">
+          <p className="text-green-500/60">// Network: Aptos Testnet | Currency: USDC</p>
+          <p className="text-green-500/40">// Built by DaveDumto with x402 Protocol V2</p>
         </div>
       </main>
-
-      {/* Custom animation styles */}
-      <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.5s ease-out;
-        }
-      `}</style>
     </div>
   );
 }
