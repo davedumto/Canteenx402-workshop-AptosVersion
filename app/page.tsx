@@ -125,7 +125,7 @@ export default function Home() {
               <p className="text-green-300/70 text-sm font-mono">
                 {APTOS_PRIVATE_KEY
                   ? "/* Connecting to Aptos network */"
-                  : "ERROR: Set NEXT_PUBLIC_APTOS_PRIVATE_KEY in .env.local"}
+                  : "// Hey x402 builder! 👋 Run 'npx buildx402 wallet create', copy the env vars, and paste them in .env.local"}
               </p>
               {error && <p className="text-red-500 text-sm font-mono border-l-2 border-red-500 pl-2">{error}</p>}
             </div>
