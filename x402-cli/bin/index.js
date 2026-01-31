@@ -20,7 +20,7 @@ const program = new Command();
 program
   .name('x402')
   .description('Scaffold x402 payment-gated Next.js apps on Aptos')
-  .version('1.0.0');
+  .version('2.0.0');
 
 // Main command: npx create-x402-app <app-name>
 program
