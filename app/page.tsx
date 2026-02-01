@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { x402Client, wrapFetchWithPayment, decodePaymentResponseHeader } from "@rvk_rishikesh/fetch";
 import { registerExactAptosScheme } from "@rvk_rishikesh/aptos/exact/client";
 import { Account, Ed25519PrivateKey } from "@aptos-labs/ts-sdk";
+import { toast } from "sonner";
+import Typewriter from "typewriter-effect";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -109,11 +111,19 @@ export default function Home() {
       <main className="relative flex flex-col gap-6 items-center max-w-2xl w-full">
         {/* Header */}
         <div className="text-center space-y-2 border border-green-500/30 p-4 bg-green-950/20">
-          <h1 className="text-3xl font-bold text-green-400">
-            &gt; x402 Next.js Starter
+          <h1 className="text-3xl font-bold text-green-400 font-mono">
+            <Typewriter
+              options={{
+                strings: ['x402 Next.js Starter', 'Shipping Faster', 'Shipping Smarter'],
+                autoStart: true,
+                loop: true,
+                delay: 100,
+                deleteSpeed: 50,
+              }}
+            />
           </h1>
           <p className="text-green-500/60 text-xs tracking-wider">
-            // Pay-per-request API template using Aptos blockchain
+            // Pay-per-request API template using Aptos blockchain \\
           </p>
         </div>
 
@@ -122,11 +132,33 @@ export default function Home() {
           {!walletAddress ? (
             <div className="space-y-4">
               <div className="text-green-400 animate-pulse">$ initializing wallet...</div>
-              <p className="text-green-300/70 text-sm font-mono">
-                {APTOS_PRIVATE_KEY
-                  ? "/* Connecting to Aptos network */"
-                  : "// Hey x402 builder! 👋 Run 'npx buildx402 wallet create', copy the env vars, and paste them in .env.local"}
-              </p>
+              {APTOS_PRIVATE_KEY ? (
+                <p className="text-green-300/70 text-sm font-mono">/* Connecting to Aptos network */</p>
+              ) : (
+                <div className="space-y-3">
+                  <p className="text-green-300/70 text-sm font-mono">
+                   Hey x402 builder! 👋 Run this command on your terminal to generate your wallet:
+                  </p>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText('npx buildx402 wallet create');
+                      toast.success('Copied to clipboard!', {
+                        description: 'npx buildx402 wallet create',
+                      });
+                    }}
+                    className="group relative w-full border border-green-500/40 bg-green-950/20 px-4 py-3 text-left font-mono text-sm text-green-400 hover:bg-green-950/40 hover:border-green-500/60 transition-all cursor-pointer"
+                  >
+                    <span className="mr-2">$</span>
+                    <span>npx buildx402 wallet create</span>
+                    <span className="absolute right-4 text-green-500/50 group-hover:text-green-500 text-xs">
+                      [click to copy]
+                    </span>
+                  </button>
+                  <p className="text-green-300/50 text-xs font-mono pl-2 border-l-2 border-green-500/30">
+                    Then paste the env vars in .env.local
+                  </p>
+                </div>
+              )}
               {error && <p className="text-red-500 text-sm font-mono border-l-2 border-red-500 pl-2">{error}</p>}
             </div>
           ) : (

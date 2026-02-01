@@ -11,10 +11,10 @@
 ### Option 1: Use the CLI (Recommended)
 
 ```bash
-npx create-x402-app my-app
+npx buildx402 my-app
 cd my-app
 npm install
-npx create-x402-app wallet create
+npx buildx402 wallet create
 # Copy the env vars to .env.local
 npm run dev
 ```
@@ -82,7 +82,7 @@ npm install
 ### 2. Generate a Wallet
 
 ```bash
-npx create-x402-app wallet create
+npx buildx402 wallet create
 ```
 
 This will output:
