@@ -1,6 +1,6 @@
 {
   "name": "buildx402",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "CLI tool to scaffold x402 payment-gated Next.js applications on Aptos",
   "main": "bin/index.js",
   "type": "module",
@@ -34,6 +34,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/davedumto/nex402"
+    "url": "https://github.com/davedumto/buildx402"
   }
 }

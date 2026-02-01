@@ -24,7 +24,7 @@ export async function initApp(appName) {
     // Repository source - can be GitHub URL or local path
     // For GitHub: 'username/repo#branch'
     // For local testing: Use environment variable X402_TEMPLATE_PATH
-    const templateSource = process.env.X402_TEMPLATE_PATH || 'davedumto/nex402#main';
+    const templateSource = process.env.X402_TEMPLATE_PATH || 'davedumto/buildx402#main';
 
     // Suppress Node warnings temporarily (degit warnings)
     const originalWarnings = process.env.NODE_NO_WARNINGS;
@@ -81,14 +81,14 @@ export async function initApp(appName) {
 
           // Display ASCII art
           console.log(chalk.green(`
-'##::: ##:'########:'##::::'##::::::::::'##::::::::::'#####::::'#######::
- ###:: ##: ##.....::. ##::'##::::::::::: ##:::'##:::'##.. ##::'##.... ##:
- ####: ##: ##::::::::. ##'##:::::::::::: ##::: ##::'##:::: ##:..::::: ##:
- ## ## ##: ######:::::. ###::::'#######: ##::: ##:: ##:::: ##::'#######::
- ##. ####: ##...:::::: ## ##:::........: #########: ##:::: ##:'##::::::::
- ##:. ###: ##:::::::: ##:. ##:::::::::::...... ##::. ##:: ##:: ##::::::::
- ##::. ##: ########: ##:::. ##:::::::::::::::: ##:::. #####::: #########:
-..::::..::........::..:::::..:::::::::::::::::..:::::.....::::........:::
+'########::'##::::'##:'####:'##:::::::'########:::::::::::'##::::'##:'##::::::::::'#####::::'#######::
+ ##.... ##: ##:::: ##:. ##:: ##::::::: ##.... ##::::::::::. ##::'##:: ##:::'##:::'##.. ##::'##.... ##:
+ ##:::: ##: ##:::: ##:: ##:: ##::::::: ##:::: ##:::::::::::. ##'##::: ##::: ##::'##:::: ##:..::::: ##:
+ ########:: ##:::: ##:: ##:: ##::::::: ##:::: ##:'#######:::. ###:::: ##::: ##:: ##:::: ##::'#######::
+ ##.... ##: ##:::: ##:: ##:: ##::::::: ##:::: ##:........::: ## ##::: #########: ##:::: ##:'##::::::::
+ ##:::: ##: ##:::: ##:: ##:: ##::::::: ##:::: ##::::::::::: ##:. ##::...... ##::. ##:: ##:: ##::::::::
+ ########::. #######::'####: ########: ########::::::::::: ##:::. ##::::::: ##:::. #####::: #########:
+........::::.......:::....::........::........::::::::::::..:::::..::::::::..:::::.....::::.........::
           `));
 
           console.log(chalk.green('\n✅ Dependencies installed!\n'));
@@ -108,7 +108,7 @@ export async function initApp(appName) {
       console.log(chalk.white('  # Copy the env vars to .env.local'));
       console.log(chalk.white('  npm run dev\n'));
 
-      console.log(chalk.gray('Documentation: https://github.com/davedumto/nex402'));
+      console.log(chalk.gray('Documentation: https://github.com/davedumto/buildx402'));
       console.log(chalk.gray('Protocol: https://github.com/rvk-utd/x402\n'));
 
       // Exit successfully
