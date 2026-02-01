@@ -26,6 +26,10 @@ export async function initApp(appName) {
     // For local testing: Use environment variable X402_TEMPLATE_PATH
     const templateSource = process.env.X402_TEMPLATE_PATH || 'davedumto/nex402#main';
 
+    // Suppress Node warnings temporarily (degit warnings)
+    const originalWarnings = process.env.NODE_NO_WARNINGS;
+    process.env.NODE_NO_WARNINGS = '1';
+
     // Use degit to clone the template
     const emitter = degit(templateSource, {
       cache: false,
@@ -35,6 +39,13 @@ export async function initApp(appName) {
 
     // Clone to the target directory
     await emitter.clone(appName);
+
+    // Restore warning settings
+    if (originalWarnings) {
+      process.env.NODE_NO_WARNINGS = originalWarnings;
+    } else {
+      delete process.env.NODE_NO_WARNINGS;
+    }
 
     spinner.succeed(chalk.green('Template downloaded!'));
 
