@@ -118,7 +118,7 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ### Change API Pricing
 
-Edit `middleware.ts`:
+Edit `proxy.ts`:
 
 ```typescript
 const paymentRoutes = {
@@ -134,7 +134,7 @@ const paymentRoutes = {
 ### Add New Payment-Gated Routes
 
 1. **Create the API endpoint** in `app/api/your-route/route.ts`
-2. **Add to middleware.ts**:
+2. **Add to proxy.ts**:
    ```typescript
    "/api/your-route": {
      accepts: [{
@@ -171,7 +171,7 @@ x402-aptos-starter/
 │   ├── layout.tsx              # Root layout
 │   ├── providers.tsx           # React providers
 │   └── globals.css             # Global styles
-├── middleware.ts               # x402 payment middleware (well-documented)
+├── proxy.ts               # x402 payment middleware (well-documented)
 ├── x402-cli/                   # CLI tool for scaffolding
 │   ├── bin/index.js           # CLI entry point
 │   ├── src/
